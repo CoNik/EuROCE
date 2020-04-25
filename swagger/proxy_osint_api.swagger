@@ -16,7 +16,7 @@ paths:
       tags:
       - "Query"
       summary: "Queries an external service to build information about a case file"
-      operationId: "quary"
+      operationId: "query"
       produces:
       - "application/json"
       consumes:
