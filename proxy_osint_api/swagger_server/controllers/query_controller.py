@@ -1,8 +1,11 @@
 import connexion
 import six
+import datetime
 
 from swagger_server.models.query_object import QueryObject  # noqa: E501
 from swagger_server.models.query_response import QueryResponse  # noqa: E501
+from swagger_server.models.evaluation import Evaluation
+from typing import List, Dict  # noqa: F401
 from swagger_server import util
 
 
@@ -18,4 +21,8 @@ def quary(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = QueryObject.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+
+    evaluations = [Evaluation(type_id=1, type_name='malware-classification', value= 100)]
+    response = QueryResponse(datetime.datetime.now(), source_api='https://github.com/qcri/COVID19-MAL-Blacklist', evaluations=evaluations)
+
+    return response
