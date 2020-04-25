@@ -22,11 +22,12 @@ services:
     ports:
       - 8086:8086 # web-server port
       - 8888:8888 # DEBUG port, e.g. IntelliJ remote debug
+    entrypoint: "java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8888 -cp app:app/lib/* eu.europa.euvsvirus.EuVsVirus"
     environment:
-      CATALINA_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888"
-      JAVA_OPTS: "
-        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888
-                  "
+#      CATALINA_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888"
+#      JAVA_OPTS: "
+#        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888
+#                  "
 #        -Ddatasource.url=jdbc:mysql://db-mysql:3306/euvsvirus
 #        -Ddatasource.username=user
 #        -Ddatasource.password=password
