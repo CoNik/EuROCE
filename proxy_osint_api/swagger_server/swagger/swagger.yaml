@@ -1,0 +1,107 @@
+---
+swagger: "2.0"
+info:
+  description: "Unified proxy interface to talk to external OSINT services and return\
+    \ information in a standardized format. Support for OSINT services must be added\
+    \ through this standardized interface."
+  version: "0.0.1a"
+  title: "Proxy OSINT API"
+host: "localhost:8080"
+tags:
+- name: "Query"
+  description: "Query an external service"
+schemes:
+- "https"
+- "http"
+paths:
+  /query:
+    post:
+      tags:
+      - "Query"
+      summary: "Queries an external service to build information about a case file"
+      operationId: "quary"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "The query object"
+        required: true
+        schema:
+          $ref: "#/definitions/QueryObject"
+      responses:
+        "200":
+          description: "Response successful"
+          schema:
+            $ref: "#/definitions/QueryResponse"
+        "400":
+          description: "Invalid parameter"
+        "404":
+          description: "Backend service did not have information about the query object"
+        "504":
+          description: "Connection problem with backend service"
+      x-swagger-router-controller: "swagger_server.controllers.query_controller"
+definitions:
+  QueryObject:
+    type: "object"
+    properties:
+      ipv4:
+        type: "string"
+        example: "183.23.75.12"
+      ipv6:
+        type: "string"
+        example: "2001:db8:85a3::8a2e:370:7334"
+      fqdn:
+        type: "string"
+        example: "coronavirususanews.com"
+      URL:
+        type: "string"
+        format: "URI"
+        example: "https://coronavirususanews.com/news"
+    example:
+      ipv4: "183.23.75.12"
+      fqdn: "coronavirususanews.com"
+      ipv6: "2001:db8:85a3::8a2e:370:7334"
+      URL: "https://coronavirususanews.com/news"
+  Evaluation:
+    type: "object"
+    properties:
+      type_id:
+        type: "integer"
+        example: 1
+      type_name:
+        type: "string"
+        example: "malware-classification"
+      value:
+        type: "integer"
+        example: 8
+    example:
+      type_name: "malware-classification"
+      type_id: 1
+      value: 8
+  QueryResponse:
+    type: "object"
+    properties:
+      time:
+        type: "string"
+        format: "date-time"
+      source-api:
+        type: "string"
+        format: "uri"
+        example: "https://github.com/qcri/COVID19-MAL-Blacklist"
+      evaluations:
+        type: "array"
+        items:
+          $ref: "#/definitions/Evaluation"
+    example:
+      evaluations:
+      - type_name: "malware-classification"
+        type_id: 1
+        value: 8
+      - type_name: "malware-classification"
+        type_id: 1
+        value: 8
+      source-api: "https://github.com/qcri/COVID19-MAL-Blacklist"
+      time: "2000-01-23T04:56:07.000+00:00"
