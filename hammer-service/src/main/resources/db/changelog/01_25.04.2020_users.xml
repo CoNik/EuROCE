@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="202004251906" author="euvsvirus">
+        <createTable tableName="users">
+            <column name="id" type="int" autoIncrement="true" startWith="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="active" type="boolean"
+                    defaultValueBoolean="true"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="202004251939" author="euvsvirus">
+        <sql dbms="mysql">
+            INSERT INTO users (id, first_name, last_name, active) VALUES (1, 'john', 'doe', 1);
+            INSERT INTO users (id, first_name, last_name, active) VALUES (2, 'tim', 'stark', 1);
+            INSERT INTO users (id, first_name, last_name, active) VALUES (3, 'johny', 'bravo', 0);
+        </sql>
+    </changeSet>
+
+
+
+</databaseChangeLog>
