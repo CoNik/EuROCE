@@ -24,6 +24,21 @@ schemes:
 - "https"
 - "http"
 paths:
+  /dashboard/stats:
+    get:
+      tags:
+      - "Public API"
+      summary: "Returns the dashboard statistics"
+      operationId: "getDashboardStats"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Request sent"
+          schema:
+            $ref: '#/definitions/Dashboard-Statistics'
+        400:
+          description: "Invalid parameter"
   /case-file/uuid/{UUID}:
     get:
       tags:
@@ -478,3 +493,45 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Tag"
+  Dashboard-Statistics:
+    type: "object"
+    properties:
+      time:
+        type: "string"
+        format: "date-time"
+      social-media-links:
+        type: "integer"
+        example: 12
+      social-media-links-diff:
+        type: "integer"
+        example: 4
+      article-links:
+        type: "integer"
+        example: 12
+      article-links-diff:
+        type: "integer"
+        example: 4
+      content-rewiew-tasks:
+        type: "integer"
+        example: 14
+      content-rewiew-tasks-diff:
+        type: "integer"
+        example: 4
+      potential-fake-news-sites:
+        type: "integer"
+        example: 120
+      potential-fake-news-sites-diff:
+        type: "integer"
+        example: 4
+      indexed-sites:
+        type: "integer"
+        example: 129
+      indexed-sites-diff:
+        type: "integer"
+        example: 2
+      indexed-articles-month:
+        type: "integer"
+        example: 17325
+      indexed-articles-month-diff:
+        type: "integer"
+        example: 34
