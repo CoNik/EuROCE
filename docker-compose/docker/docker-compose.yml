@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  db:
+  db-mysql:
     image: mysql:8.0
     volumes:
       - db_data:/var/lib/mysql
@@ -13,7 +13,30 @@ services:
       MYSQL_DATABASE: euvsvirus
       MYSQL_USER: user
       MYSQL_PASSWORD: password
-
+  hammer-service:
+    restart: always
+    image: ${docker.registry.prefix}hammer-service:${project.version}
+    build:
+      dockerfile: ./Dockerfile
+      context: ../../../../hammer-service
+    ports:
+      - 8086:8086 # web-server port
+      - 8888:8888 # DEBUG port, e.g. IntelliJ remote debug
+    environment:
+      CATALINA_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888"
+      JAVA_OPTS: "
+        -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888
+                  "
+#        -Ddatasource.url=jdbc:mysql://db-mysql:3306/euvsvirus
+#        -Ddatasource.username=user
+#        -Ddatasource.password=password
+#        -Ddatasource.driver-class-name=com.mysql.cj.jdbc.Driver
+#        -Djpa.generate-ddl=true
+#        -Djpa.hibernate.ddl-auto=update
+#        -Djpa.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+#                 "
+    links:
+      - db-mysql
 volumes:
   db_data:
     external: true
