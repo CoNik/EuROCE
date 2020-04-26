@@ -16,13 +16,9 @@ services:
   proxy_osint_api:
     restart: always
     image: proxy_covid_blacklist:${project.version}
-    ports:
-      - 9080:9080
   main_api:
     restart: always
     image: fnh_api:${project.version}
-    ports:
-      - 7080:7080
   hammer-service:
     restart: always
     image: hammer-service:${project.version}
