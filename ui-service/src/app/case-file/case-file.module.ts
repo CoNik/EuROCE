@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { CaseFileRoutingModule } from './case-file-routing.module';
 import { CaseFileComponent } from './case-file.component';
 import { StatusCard2Component } from './status-card2/status-card2.component';
@@ -13,13 +14,11 @@ import { Table3Component } from './table3/table3.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-    declarations: [CaseFileComponent, StatusCard2Component, Space23Component, Table1Component, TabsComponent, Table2Component,
-        AccordionComponent, Table4Component, Table3Component],
-    imports: [
-        CommonModule,
-        CaseFileRoutingModule,
-        SharedModule,
-    ],
+  declarations: [CaseFileComponent, StatusCard2Component, Space23Component, Table1Component, TabsComponent, Table2Component, AccordionComponent, Table4Component, Table3Component],
+  imports: [
+    CommonModule,
+    CaseFileRoutingModule,
+    SharedModule
+  ]
 })
-export class CaseFileModule {
-}
+export class CaseFileModule { }

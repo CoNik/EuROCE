@@ -41,27 +41,27 @@ export class CaseFileComponent implements OnInit {
   source =   [
     {
       "ips": 1,
-      "serviceTypes": "Danielle Kennedy",
-      "ports": "danielle.kennedy",
-      "vulnerabilityScans": "danielle_91@example.com"
+      "serviceTypes": "N/A",
+      "ports": "N/A",
+      "vulnerabilityScans": "N/A"
     },
     {
       "ips": 2,
-      "serviceTypes": "Russell Payne",
-      "ports": "russell.payne",
-      "vulnerabilityScans": "russell_88@example.com"
+      "serviceTypes": "N/A",
+      "ports": "N/A",
+      "vulnerabilityScans": "N/A"
     },
     {
       "ips": 3,
-      "serviceTypes": "Brenda Hanson",
-      "ports": "brenda.hanson",
-      "vulnerabilityScans": "brenda97@example.com"
+      "serviceTypes": "N/A",
+      "ports": "N/A",
+      "vulnerabilityScans": "N/A"
     },
     {
       "ips": 4,
-      "serviceTypes": "Nathan Knight",
-      "ports": "nathan.knight",
-      "vulnerabilityScans": "nathan-85@example.com"
+      "serviceTypes": "N/A",
+      "ports": "N/A",
+      "vulnerabilityScans": "N/A"
     }
   ];
 
