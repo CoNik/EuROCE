@@ -1,6 +1,6 @@
 import connexion
 import six
-
+import flask
 from swagger_server.models.target import Target  # noqa: E501
 from swagger_server import util
 

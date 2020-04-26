@@ -2,6 +2,7 @@ import connexion
 import six
 import datetime
 import random
+import flask
 from swagger_server.models.case_file import CaseFile  # noqa: E501
 from swagger_server.models.dashboard_statistics import DashboardStatistics  # noqa: E501
 from swagger_server.models.cluster import Cluster  # noqa: E501
@@ -111,7 +112,20 @@ def search_case_files(tags=None, hostnames=None, geos=None):  # noqa: E501
     global queries;
     queries = queries + 1;
 
-    return 'do some magic!'
+    num=0;
+    num = num + (len(tags) if tags != None else 0)
+    num = num + (len(hostnames) if hostnames != None else 0)
+    num = num + (len(geos) if geos != None else 0)
+
+    gen=random.Random(num);
+    found = 57 if num==0 else gen.randint(1,32)
+
+    result=[]
+    for item in range(found):
+        num=num+1;
+        result.append(get_random_casefile(num));
+
+    return result
 
 
 def find_case_files(url):  # noqa: E501

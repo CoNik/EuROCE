@@ -1,6 +1,6 @@
 import connexion
 import six
-
+import flask
 from swagger_server.models.case_file import CaseFile  # noqa: E501
 from swagger_server.models.user import User  # noqa: E501
 from swagger_server import util
