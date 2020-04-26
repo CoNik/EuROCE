@@ -20,7 +20,7 @@ services:
       dockerfile: ./Dockerfile
       context: ../../../../hammer-service
     ports:
-      - 8086:8086 # web-server port
+      - 8080:8080 # web-server port
       - 8888:8888 # DEBUG port, e.g. IntelliJ remote debug
     environment:
       CATALINA_OPTS: "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888"
@@ -39,6 +39,28 @@ services:
       - db-mysql
     links:
       - db-mysql
+  ui-service:
+    restart: always
+    image: ${docker.registry.prefix}ui-service:${project.version}
+    build:
+      dockerfile: ./Dockerfile
+      context: ../../../../ui-service
+  ingress-docker:
+    restart: always
+    image: ${docker.registry.prefix}ingress-docker:${project.version}
+    build:
+      dockerfile: ./Dockerfile
+      context: ../../../../ingress-docker/target
+    ports:
+      - 80:80
+    depends_on:
+      - db-mysql
+      - ui-service
+      - hammer-service
+    links:
+      - db-mysql
+      - ui-service
+      - hammer-service
 volumes:
   db_data:
     external: true
