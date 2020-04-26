@@ -15,7 +15,7 @@ def delete_targets(targetID):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    return flask.Response(status=403)
 
 
 def edit_target(targetID, body):  # noqa: E501
@@ -32,7 +32,7 @@ def edit_target(targetID, body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = Target.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    return flask.Response(status=403)
 
 
 def get_target_by_id(targetID):  # noqa: E501
@@ -45,4 +45,4 @@ def get_target_by_id(targetID):  # noqa: E501
 
     :rtype: Target
     """
-    return 'do some magic!'
+    return flask.Response(status=403)
