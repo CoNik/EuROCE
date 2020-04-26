@@ -16,8 +16,8 @@ import { LocalDataSource } from 'ng2-smart-table';
 export class SmartTableComponent implements AfterViewInit {
 
   private _source = new LocalDataSource([]);
-  get source(): LocalDataSource {
-    return this._source;
+  get source(): any[] {
+    return <any>this._source;
   }
 
   @Input() settings;

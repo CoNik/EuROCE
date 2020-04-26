@@ -6,6 +6,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./status-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+// card with the user name and profil
 export class StatusCardComponent implements OnInit {
 
   constructor() { }

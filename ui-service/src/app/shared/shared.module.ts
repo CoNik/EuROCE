@@ -23,6 +23,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     LeafletModule,
     Ng2SmartTableModule
   ],
-  exports: [NbCardModule, MultipleBarChartComponent, EchartsDirective, NgxEchartsModule, NbIconModule, NbTooltipModule, NbButtonModule, NbCheckboxModule, NbInputModule, MapComponent, LeafletModule, SmartTableComponent, Ng2SmartTableModule]
+  exports: [NbCardModule, MultipleBarChartComponent, EchartsDirective, NgxEchartsModule, NbIconModule, NbTooltipModule, NbButtonModule,
+    NbCheckboxModule, NbInputModule, MapComponent, LeafletModule, SmartTableComponent, Ng2SmartTableModule]
 })
 export class SharedModule { }
