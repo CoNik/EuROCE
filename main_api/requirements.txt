@@ -1,0 +1,6 @@
+connexion == 1.1.15
+swagger-ui-bundle
+python_dateutil == 2.6.0
+setuptools >= 21.0.0
+werkzeug==0.16.1
+flask_cors==3.0.8
