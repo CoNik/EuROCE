@@ -20,4 +20,4 @@ def edit_case_file(UUID, body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = User.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    return flask.Response(status=403)

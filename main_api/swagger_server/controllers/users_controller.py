@@ -1,6 +1,6 @@
 import connexion
 import six
-
+import flask
 from swagger_server.models.user import User  # noqa: E501
 from swagger_server import util
 
@@ -17,7 +17,7 @@ def create_user(body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = User.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    return flask.Response(status=403)
 
 
 def delete_user(username):  # noqa: E501
@@ -30,7 +30,7 @@ def delete_user(username):  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    return flask.Response(status=403)
 
 
 def edit_user(username, body):  # noqa: E501
@@ -47,7 +47,7 @@ def edit_user(username, body):  # noqa: E501
     """
     if connexion.request.is_json:
         body = User.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    return flask.Response(status=403)
 
 
 def get_user(username):  # noqa: E501
@@ -60,7 +60,7 @@ def get_user(username):  # noqa: E501
 
     :rtype: User
     """
-    return 'do some magic!'
+    return flask.Response(status=403)
 
 
 def login_user(username, body):  # noqa: E501
@@ -75,7 +75,7 @@ def login_user(username, body):  # noqa: E501
 
     :rtype: str
     """
-    return 'do some magic!'
+    return flask.Response(status=403)
 
 
 def logout_user():  # noqa: E501
@@ -86,4 +86,4 @@ def logout_user():  # noqa: E501
 
     :rtype: None
     """
-    return 'do some magic!'
+    return flask.Response(status=403)
