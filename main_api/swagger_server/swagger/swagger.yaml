@@ -9,6 +9,8 @@ info:
     email: "apiteam@fakenewshammer.io"
 host: "95.217.127.203"
 basePath: "/api"
+schemes:
+- "http"
 tags:
 - name: "Public API"
   description: "Public API for case file queries"
@@ -22,6 +24,7 @@ tags:
 - name: "Users"
   description: "Protected operations about users"
 schemes:
+- "https"
 - "http"
 paths:
   /dashboard/stats:
@@ -519,10 +522,6 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Cluster"
-      case-files:
-        type: "array"
-        items:
-          $ref: "#/definitions/Case-File"
       name:
         type: "string"
       url:
@@ -533,9 +532,6 @@ definitions:
         items:
           $ref: "#/definitions/Tag"
     example:
-      case-files:
-      - null
-      - null
       name: "name"
       id: 0
       clusters:
