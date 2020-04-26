@@ -12,3 +12,6 @@ def main():
     CORS(app.app)
     app.run(port=8080)
 
+
+if __name__ == '__main__':
+    main()
