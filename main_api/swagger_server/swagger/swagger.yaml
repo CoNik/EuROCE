@@ -22,7 +22,6 @@ tags:
 - name: "Users"
   description: "Protected operations about users"
 schemes:
-- "https"
 - "http"
 paths:
   /dashboard/stats:
