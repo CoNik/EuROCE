@@ -119,6 +119,7 @@
 	<modules>
 		<module>docker-compose</module>
 		<module>hammer-service</module>
+		<module>ingress-docker</module>
 	</modules>
 
 	<build>

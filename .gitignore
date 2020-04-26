@@ -39,7 +39,7 @@ tmp/
 .vscode/settings.json
 /nbactions.xml
 /nb-configuration.xml
-tms-web-client/package-lock.json
+
 
 #logrotation files for nginx
 !nginx.logrotate
