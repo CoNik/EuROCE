@@ -1,13 +1,12 @@
 ---
 swagger: "2.0"
 info:
-  description: ""
+  description: "This is the Fake News Hammer public API, the official API for the\
+    \ project."
   version: "0.2.1a"
   title: "Fake News Hammer public API"
-  termsOfService: "http://fakenewshammer.io/terms/"
-  contact:
-    email: "apiteam@fakenewshammer.io"
-host: "95.217.127.203"
+  termsOfService: "http://euvsvirus.sandline.ro/"
+host: "euvsvirus.sandline.ro"
 basePath: "/api"
 tags:
 - name: "Public API"
@@ -519,10 +518,6 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/Cluster"
-      case-files:
-        type: "array"
-        items:
-          $ref: "#/definitions/Case-File"
       name:
         type: "string"
       url:
@@ -533,9 +528,6 @@ definitions:
         items:
           $ref: "#/definitions/Tag"
     example:
-      case-files:
-      - null
-      - null
       name: "name"
       id: 0
       clusters:

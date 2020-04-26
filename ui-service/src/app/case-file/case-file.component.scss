@@ -181,6 +181,7 @@
     justify-content: flex-start;
     flex-direction: column;
     padding: 0;
+    margin: 0 0 0 3px;
     overflow: visible;
     background-color: unset;
   }
@@ -219,33 +220,112 @@
     background-color: var(--color-info-default);
   }
     
-  .space86 {
-    height: auto;
-    min-height: 2rem;
-    flex-grow: 1;
-    flex-basis: 0;
-    align-items: flex-start;
-    align-content: flex-start;
-    justify-content: flex-start;
-    padding: 0;
-    overflow: visible;
-    background-color: unset;
-  }
-    
-  .space861 {
-    height: auto;
-    min-height: 2rem;
-    flex-grow: 1;
-    flex-basis: 0;
-    align-items: flex-start;
-    align-content: flex-start;
-    justify-content: flex-start;
-    padding: 0;
-    overflow: visible;
-    background-color: unset;
-  }
-    
   .space83 {
+    height: auto;
+    min-height: 2rem;
+    flex-grow: 1;
+    flex-basis: 0;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    overflow: visible;
+    background-color: unset;
+  }
+    
+  .divider16 {
+    width: 100%;
+    height: 2px;
+    margin: 4px 0;
+    background-color: var(--color-info-default);
+  }
+    
+  .button12 {
+    margin: 0 0 0 10px;
+    width: auto;
+    flex-direction: row;
+    > nb-icon.btn-icon.icon {
+      margin: 0;
+    }
+    
+    span {
+      display: inline;
+    }
+    
+    > nb-icon {
+      display: none;
+    }
+  }
+    
+  .button13 {
+    margin: 0 0 0 5%;
+    width: auto;
+    flex-direction: row;
+    > nb-icon.btn-icon.icon {
+      margin: 0;
+    }
+    
+    span {
+      display: inline;
+    }
+    
+    > nb-icon {
+      display: none;
+    }
+  }
+    
+  .button14 {
+    margin: 0 0 0 5%;
+    width: auto;
+    flex-direction: row;
+    > nb-icon.btn-icon.icon {
+      margin: 0;
+    }
+    
+    span {
+      display: inline;
+    }
+    
+    > nb-icon {
+      display: none;
+    }
+  }
+    
+  .button15 {
+    margin: 0 0 0 5%;
+    width: auto;
+    flex-direction: row;
+    > nb-icon.btn-icon.icon {
+      margin: 0;
+    }
+    
+    span {
+      display: inline;
+    }
+    
+    > nb-icon {
+      display: none;
+    }
+  }
+    
+  .button16 {
+    margin: 0 0 0 5%;
+    width: auto;
+    flex-direction: row;
+    > nb-icon.btn-icon.icon {
+      margin: 0;
+    }
+    
+    span {
+      display: inline;
+    }
+    
+    > nb-icon {
+      display: none;
+    }
+  }
+    
+  .space107 {
     height: auto;
     min-height: 2rem;
     flex-grow: 1;

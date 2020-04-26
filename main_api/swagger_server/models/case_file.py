@@ -16,15 +16,13 @@ class CaseFile(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: int=None, clusters: List[Cluster]=None, case_files: List=None, name: str=None, url: str=None, tags: List[Tag]=None):  # noqa: E501
+    def __init__(self, id: int=None, clusters: List[Cluster]=None, name: str=None, url: str=None, tags: List[Tag]=None):  # noqa: E501
         """CaseFile - a model defined in Swagger
 
         :param id: The id of this CaseFile.  # noqa: E501
         :type id: int
         :param clusters: The clusters of this CaseFile.  # noqa: E501
         :type clusters: List[Cluster]
-        :param case_files: The case_files of this CaseFile.  # noqa: E501
-        :type case_files: List[CaseFile]
         :param name: The name of this CaseFile.  # noqa: E501
         :type name: str
         :param url: The url of this CaseFile.  # noqa: E501
@@ -35,7 +33,6 @@ class CaseFile(Model):
         self.swagger_types = {
             'id': int,
             'clusters': List[Cluster],
-            'case_files': List,
             'name': str,
             'url': str,
             'tags': List[Tag]
@@ -44,7 +41,6 @@ class CaseFile(Model):
         self.attribute_map = {
             'id': 'id',
             'clusters': 'clusters',
-            'case_files': 'case-files',
             'name': 'name',
             'url': 'url',
             'tags': 'tags'
@@ -52,7 +48,6 @@ class CaseFile(Model):
 
         self._id = id
         self._clusters = clusters
-        self._case_files = case_files
         self._name = name
         self._url = url
         self._tags = tags
@@ -109,27 +104,6 @@ class CaseFile(Model):
         """
 
         self._clusters = clusters
-
-    @property
-    def case_files(self) -> List:
-        """Gets the case_files of this CaseFile.
-
-
-        :return: The case_files of this CaseFile.
-        :rtype: List[CaseFile]
-        """
-        return self._case_files
-
-    @case_files.setter
-    def case_files(self, case_files: List):
-        """Sets the case_files of this CaseFile.
-
-
-        :param case_files: The case_files of this CaseFile.
-        :type case_files: List[CaseFile]
-        """
-
-        self._case_files = case_files
 
     @property
     def name(self) -> str:

@@ -18,8 +18,8 @@ export class CaseFileComponent implements OnInit {
       "ports": {
         "title": "Ports"
       },
-      "services": {
-        "title": "Services"
+      "vulnerabilityScans": {
+        "title": "Vulnerability Scans"
       }
     },
     "delete": {
@@ -43,25 +43,25 @@ export class CaseFileComponent implements OnInit {
       "ips": 1,
       "serviceTypes": "Danielle Kennedy",
       "ports": "danielle.kennedy",
-      "services": "danielle_91@example.com"
+      "vulnerabilityScans": "danielle_91@example.com"
     },
     {
       "ips": 2,
       "serviceTypes": "Russell Payne",
       "ports": "russell.payne",
-      "services": "russell_88@example.com"
+      "vulnerabilityScans": "russell_88@example.com"
     },
     {
       "ips": 3,
       "serviceTypes": "Brenda Hanson",
       "ports": "brenda.hanson",
-      "services": "brenda97@example.com"
+      "vulnerabilityScans": "brenda97@example.com"
     },
     {
       "ips": 4,
       "serviceTypes": "Nathan Knight",
       "ports": "nathan.knight",
-      "services": "nathan-85@example.com"
+      "vulnerabilityScans": "nathan-85@example.com"
     }
   ];
 

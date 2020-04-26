@@ -6,7 +6,7 @@ info:
     \ through this standardized interface."
   version: "0.0.1a"
   title: "Proxy OSINT API"
-host: "95.217.127.203"
+host: "euvsvirus.sandline.ro"
 basePath: "/osint"
 tags:
 - name: "Query"
