@@ -1,16 +1,13 @@
 ---
 swagger: "2.0"
 info:
-  description: ""
+  description: "This is the Fake News Hammer public API, the official API for the\
+    \ project."
   version: "0.2.1a"
   title: "Fake News Hammer public API"
-  termsOfService: "http://fakenewshammer.io/terms/"
-  contact:
-    email: "apiteam@fakenewshammer.io"
-host: "95.217.127.203"
+  termsOfService: "http://euvsvirus.sandline.ro/"
+host: "euvsvirus.sandline.ro"
 basePath: "/api"
-schemes:
-- "http"
 tags:
 - name: "Public API"
   description: "Public API for case file queries"
@@ -24,7 +21,6 @@ tags:
 - name: "Users"
   description: "Protected operations about users"
 schemes:
-- "https"
 - "http"
 paths:
   /dashboard/stats:
