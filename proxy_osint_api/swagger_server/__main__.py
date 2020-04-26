@@ -10,7 +10,7 @@ def main():
     app.app.json_encoder = encoder.JSONEncoder
     app.add_api('swagger.yaml', arguments={'title': 'Proxy OSINT API'})
     CORS(app.app)
-    app.run(port=8080,host='localhost')
+    app.run(port=9080)
 
 
 if __name__ == '__main__':

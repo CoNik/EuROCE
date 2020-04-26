@@ -6,12 +6,11 @@ info:
     \ through this standardized interface."
   version: "0.0.1a"
   title: "Proxy OSINT API"
-host: "localhost:8080"
+host: "95.217.127.203:9080"
 tags:
 - name: "Query"
   description: "Query an external service"
 schemes:
-- "https"
 - "http"
 paths:
   /query:

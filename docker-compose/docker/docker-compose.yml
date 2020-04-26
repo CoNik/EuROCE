@@ -13,6 +13,14 @@ services:
       MYSQL_DATABASE: ${db_name}
       MYSQL_USER: ${db_user}
       MYSQL_PASSWORD: ${db_pw}
+  proxy_osint_api:
+    restart: always
+    image: proxy_covid_blacklist
+    build:
+      dockerfile: Dockerfile
+      context: ../../proxy_osint_api
+    ports:
+      - 9080:9080
   hammer-service:
     restart: always
     image: hammer-service:${git}
