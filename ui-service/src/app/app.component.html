@@ -1,0 +1,33 @@
+<nb-layout withScroll [class.header-hidden]="!(layout$ | async)?.header">
+
+  <nb-layout-header *ngIf="(layout$ | async)?.header" class="header">
+    <div class="space space3">
+      <div class="space space171">
+        <span class="text15 text-primary text-alignment-left text-transform-none subtitle">Fake News Hammer</span>
+        <div class="space space57">
+          
+        </div>
+      </div>
+      <div class="space space17">
+        <span class="text16 text-basic text-alignment-left text-transform-none subtitle">Case File</span>
+      </div>
+      <div class="space space172">
+        <a nbButton href="" target="_blank"  class="button-link size-xl-medium" appearance="filled" status="control">
+          <nb-icon class="icon btn-icon" icon="star"></nb-icon>
+          <span>Log OUT</span>
+        </a>
+      </div>
+    </div>
+  </nb-layout-header>
+
+  <nb-sidebar *ngIf="(layout$ | async)?.sidebar" class="sidebar" responsive="true" [collapsedBreakpoints]="['xs', 'is', 'sm']" [compactedBreakpoints]="[]">
+    <div class="space sidebar-space">
+      <nb-menu class="menu" [items]="items"></nb-menu>
+    </div>
+  </nb-sidebar>
+
+  <nb-layout-column [style.padding]="padding$ | async">
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+
+</nb-layout>

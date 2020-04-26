@@ -1,0 +1,90 @@
+:host {
+
+  height: 100%;
+  flex-grow: 1;
+  flex-basis: 0;
+  display: block;
+  
+  .image3 {
+    margin: 0 8px 0 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 100px;
+    object-fit: cover;
+  }
+    
+  .divider8 {
+    width: 100%;
+    height: 2px;
+    margin: 4px 0;
+    background-color: var(--bg-disabled-color);
+  }
+    
+  .space38 {
+    height: auto;
+    min-height: 2rem;
+    flex-grow: 1;
+    flex-basis: 0;
+    align-items: flex-start;
+    align-content: flex-start;
+    justify-content: flex-start;
+    padding: 0;
+    overflow: visible;
+    background-color: unset;
+  }
+    
+  .space33 {
+    height: auto;
+    min-height: 2rem;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: left;
+    padding: 0 0 12px 0;
+    overflow: visible;
+    background-color: unset;
+  }
+    
+  .heading16 {
+    margin: 0;
+  }
+    
+  .space34 {
+    height: 32px;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: left;
+    overflow: visible;
+    background-color: unset;
+  }
+    
+  .text52 {
+    margin: 0 4px 0 0;
+  }
+    
+  .text53 {
+    margin: 0;
+  }
+    
+  .space35 {
+    height: auto;
+    min-height: 2rem;
+    width: 100%;
+    align-items: center;
+    align-content: center;
+    justify-content: left;
+    overflow: visible;
+    background-color: unset;
+  }
+    
+  .space32 {
+    height: 100%;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: flex-start;
+    overflow: visible;
+    background-color: unset;
+  }
+  
+}
