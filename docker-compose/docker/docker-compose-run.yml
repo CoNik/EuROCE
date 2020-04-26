@@ -16,25 +16,16 @@ services:
   proxy_osint_api:
     restart: always
     image: proxy_covid_blacklist:${project.version}
-    build:
-      dockerfile: ./Dockerfile
-      context: ../../../../proxy_osint_api
     ports:
       - 9080:9080
   main_api:
     restart: always
     image: fnh_api:${project.version}
-    build:
-      dockerfile: ./Dockerfile
-      context: ../../../../main_api
     ports:
       - 7080:7080
   hammer-service:
     restart: always
     image: hammer-service:${project.version}
-    build:
-      dockerfile: ./Dockerfile
-      context: ../../../../hammer-service
     ports:
       - 8080:8080 # web-server port
       - 8888:8888 # DEBUG port, e.g. IntelliJ remote debug
@@ -43,14 +34,14 @@ services:
       JAVA_OPTS: "
         -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=0.0.0.0:8888
                  "
-#        -Ddatasource.url=jdbc:mysql://db-mysql:3306/euvsvirus
-#        -Ddatasource.username=user
-#        -Ddatasource.password=password
-#        -Ddatasource.driver-class-name=com.mysql.cj.jdbc.Driver
-#        -Djpa.generate-ddl=true
-#        -Djpa.hibernate.ddl-auto=update
-#        -Djpa.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
-#                 "
+    #        -Ddatasource.url=jdbc:mysql://db-mysql:3306/euvsvirus
+    #        -Ddatasource.username=user
+    #        -Ddatasource.password=password
+    #        -Ddatasource.driver-class-name=com.mysql.cj.jdbc.Driver
+    #        -Djpa.generate-ddl=true
+    #        -Djpa.hibernate.ddl-auto=update
+    #        -Djpa.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect
+    #                 "
     depends_on:
       - db-mysql
     links:
@@ -58,15 +49,9 @@ services:
   ui-service:
     restart: always
     image: ${docker.registry.prefix}ui-service:${project.version}
-    build:
-      dockerfile: ./Dockerfile
-      context: ../../../../ui-service
   ingress-docker:
     restart: always
     image: ${docker.registry.prefix}ingress-docker:${project.version}
-    build:
-      dockerfile: ./Dockerfile
-      context: ../../../../ingress-docker/target
     ports:
       - 80:80
     depends_on:
