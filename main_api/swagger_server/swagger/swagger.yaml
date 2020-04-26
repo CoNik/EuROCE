@@ -1,0 +1,609 @@
+---
+swagger: "2.0"
+info:
+  description: ""
+  version: "0.2.1a"
+  title: "Fake News Hammer public API"
+  termsOfService: "http://fakenewshammer.io/terms/"
+  contact:
+    email: "apiteam@fakenewshammer.io"
+host: "95.217.127.203"
+basePath: "/api"
+tags:
+- name: "Public API"
+  description: "Public API for case file queries"
+  externalDocs:
+    description: "Find out more"
+    url: "http://fakenewshammer.io/about/api-docs/"
+- name: "Case Files"
+  description: "Protected website case file handling"
+- name: "Targets"
+  description: "Protected access to target database"
+- name: "Users"
+  description: "Protected operations about users"
+schemes:
+- "http"
+paths:
+  /dashboard/stats:
+    get:
+      tags:
+      - "Public API"
+      summary: "Returns the dashboard statistics"
+      operationId: "get_dashboard_stats"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Request sent"
+          schema:
+            $ref: "#/definitions/Dashboard-Statistics"
+        "400":
+          description: "Invalid parameter"
+      x-swagger-router-controller: "swagger_server.controllers.public_api_controller"
+  /case-file/uuid/{UUID}:
+    get:
+      tags:
+      - "Public API"
+      summary: "Retrieves a specific case file from its UUID"
+      description: ""
+      operationId: "get_case_file"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "UUID"
+        in: "path"
+        description: "The case file UUID"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "Case File found"
+          schema:
+            $ref: "#/definitions/Case-File"
+        "404":
+          description: "UUID not found"
+      x-swagger-router-controller: "swagger_server.controllers.public_api_controller"
+    put:
+      tags:
+      - "Case Files"
+      summary: "Changes the properties of a specific case file"
+      operationId: "edit_case_file"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "UUID"
+        in: "path"
+        description: "The case file UUID"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: "Case File found"
+          schema:
+            $ref: "#/definitions/Case-File"
+        "400":
+          description: "Invalid parameters"
+        "404":
+          description: "UUID not found"
+      security:
+      - fnh_auth:
+        - "write:case-files"
+        - "read:case-files"
+      x-swagger-router-controller: "swagger_server.controllers.case_files_controller"
+  /case-file/search:
+    get:
+      tags:
+      - "Public API"
+      summary: "Search existing case files based on a specific parameter"
+      operationId: "search_case_files"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "tags"
+        in: "query"
+        description: "Tags to filter by"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "hostnames"
+        in: "query"
+        description: "Hostnames to filter by"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      - name: "geos"
+        in: "query"
+        description: "Geography to filter by"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "multi"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Case-File"
+        "400":
+          description: "Invalid tag value"
+      x-swagger-router-controller: "swagger_server.controllers.public_api_controller"
+  /targets/requestNew:
+    post:
+      tags:
+      - "Public API"
+      summary: "Request opening a case file based on a website URL"
+      operationId: "find_case_files"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "url"
+        in: "formData"
+        description: "URL to submit"
+        required: true
+        type: "string"
+        format: "URI"
+      responses:
+        "200":
+          description: "Request sent"
+        "400":
+          description: "Invalid parameter"
+      x-swagger-router-controller: "swagger_server.controllers.public_api_controller"
+  /targets/{targetID}:
+    get:
+      tags:
+      - "Targets"
+      summary: "Gets the target based on its ID"
+      operationId: "get_target_by_id"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "targetID"
+        in: "path"
+        description: "ID of target to return"
+        required: true
+        type: "integer"
+      responses:
+        "200":
+          description: "Target returned"
+          schema:
+            $ref: "#/definitions/Target"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Target not found"
+      security:
+      - fnh_auth:
+        - "read:targets"
+      x-swagger-router-controller: "swagger_server.controllers.targets_controller"
+    put:
+      tags:
+      - "Targets"
+      summary: "Changes the properties of a specific target"
+      operationId: "edit_target"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "targetID"
+        in: "path"
+        description: "ID of target to change"
+        required: true
+        type: "integer"
+      - in: "body"
+        name: "body"
+        description: "Updated target object"
+        required: true
+        schema:
+          $ref: "#/definitions/Target"
+      responses:
+        "200":
+          description: "Target returned"
+          schema:
+            $ref: "#/definitions/Target"
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Target not found"
+      security:
+      - fnh_auth:
+        - "read:targets"
+        - "write:targets"
+      x-swagger-router-controller: "swagger_server.controllers.targets_controller"
+    delete:
+      tags:
+      - "Targets"
+      summary: "Changes the properties of a specific target"
+      operationId: "delete_targets"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "targetID"
+        in: "path"
+        description: "ID of target to delete"
+        required: true
+        type: "integer"
+      responses:
+        "400":
+          description: "Invalid ID supplied"
+        "404":
+          description: "Target not found"
+      security:
+      - fnh_auth:
+        - "read:targets"
+        - "write:targets"
+      x-swagger-router-controller: "swagger_server.controllers.targets_controller"
+  /user/login:
+    post:
+      tags:
+      - "Users"
+      summary: "Logs user into the system"
+      description: ""
+      operationId: "login_user"
+      consumes:
+      - "application/x-www-form-urlencoded"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "formData"
+        description: "The user name for login"
+        required: true
+        type: "string"
+      - name: "body"
+        in: "formData"
+        description: "The password for login in clear text"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          headers:
+            X-Rate-Limit:
+              type: "integer"
+              format: "int32"
+              description: "calls per hour allowed by the user"
+            X-Expires-After:
+              type: "string"
+              format: "date-time"
+              description: "date in UTC when token expires"
+          schema:
+            type: "string"
+        "400":
+          description: "Invalid username/password supplied"
+      x-swagger-router-controller: "swagger_server.controllers.users_controller"
+  /user/logout:
+    get:
+      tags:
+      - "Users"
+      summary: "Logs out current logged in user session"
+      description: ""
+      operationId: "logout_user"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        default:
+          description: "successful operation"
+      x-swagger-router-controller: "swagger_server.controllers.users_controller"
+  /user:
+    post:
+      tags:
+      - "Users"
+      summary: "Create user"
+      description: "This can only be done by the logged in user."
+      operationId: "create_user"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        default:
+          description: "successful operation"
+      security:
+      - fnh_auth:
+        - "read:users"
+        - "write:users"
+      x-swagger-router-controller: "swagger_server.controllers.users_controller"
+  /user/{username}/:
+    get:
+      tags:
+      - "Users"
+      summary: "Get user by user name"
+      operationId: "get_user"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be fetched."
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/User"
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+      security:
+      - fnh_auth:
+        - "read:users"
+      x-swagger-router-controller: "swagger_server.controllers.users_controller"
+    put:
+      tags:
+      - "Users"
+      summary: "Change user"
+      description: "This can only be done by the logged in user."
+      operationId: "edit_user"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "name that need to be updated"
+        required: true
+        type: "string"
+      - in: "body"
+        name: "body"
+        description: "Updated user object"
+        required: true
+        schema:
+          $ref: "#/definitions/User"
+      responses:
+        "400":
+          description: "Invalid user supplied"
+        "404":
+          description: "User not found"
+      security:
+      - fnh_auth:
+        - "read:users"
+        - "write:users"
+      x-swagger-router-controller: "swagger_server.controllers.users_controller"
+    delete:
+      tags:
+      - "Users"
+      summary: "Delete user"
+      description: "This can only be done by the logged in user."
+      operationId: "delete_user"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "username"
+        in: "path"
+        description: "The name that needs to be deleted"
+        required: true
+        type: "string"
+      responses:
+        "400":
+          description: "Invalid username supplied"
+        "404":
+          description: "User not found"
+      security:
+      - fnh_auth:
+        - "read:users"
+        - "write:users"
+      x-swagger-router-controller: "swagger_server.controllers.users_controller"
+securityDefinitions:
+  fnh_auth:
+    type: "oauth2"
+    authorizationUrl: "http://fakenewshammer.io/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      write:case-files: "Modifies the case-files in the database"
+      read:case-files: "Reads the case-files in the database"
+      append:targets: "Appends to the targets"
+      write:targets: "Modifies the targets"
+      read:targets: "Reads the targets"
+      write:users: "Modifies the users"
+      read:users: "Reads the users"
+  fnh_api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+definitions:
+  Target:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      website:
+        type: "string"
+        format: "URI"
+      strategy:
+        type: "string"
+        example: "news-please"
+      reload:
+        type: "string"
+        description: "How often to reload this"
+        enum:
+        - "daily"
+        - "hourly"
+        - "weekly"
+    example:
+      website: "website"
+      reload: "daily"
+      id: 0
+      strategy: "news-please"
+  Cluster:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+      type:
+        type: "string"
+        enum:
+        - "website-stack"
+        - "authors"
+    example:
+      name: "name"
+      id: 6
+      type: "website-stack"
+  User:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      username:
+        type: "string"
+      firstName:
+        type: "string"
+      lastName:
+        type: "string"
+      email:
+        type: "string"
+      password:
+        type: "string"
+      phone:
+        type: "string"
+      userStatus:
+        type: "integer"
+        format: "int32"
+        description: "User Status"
+    xml:
+      name: "User"
+    example:
+      firstName: "firstName"
+      lastName: "lastName"
+      password: "password"
+      userStatus: 6
+      phone: "phone"
+      id: 0
+      email: "email"
+      username: "username"
+  Tag:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      name:
+        type: "string"
+    xml:
+      name: "Tag"
+    example:
+      name: "name"
+      id: 1
+  Case-File:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      clusters:
+        type: "array"
+        items:
+          $ref: "#/definitions/Cluster"
+      case-files:
+        type: "array"
+        items:
+          $ref: "#/definitions/Case-File"
+      name:
+        type: "string"
+      url:
+        type: "string"
+        format: "URI"
+      tags:
+        type: "array"
+        items:
+          $ref: "#/definitions/Tag"
+    example:
+      case-files:
+      - null
+      - null
+      name: "name"
+      id: 0
+      clusters:
+      - name: "name"
+        id: 6
+        type: "website-stack"
+      - name: "name"
+        id: 6
+        type: "website-stack"
+      url: "url"
+      tags:
+      - name: "name"
+        id: 1
+      - name: "name"
+        id: 1
+  Dashboard-Statistics:
+    type: "object"
+    properties:
+      time:
+        type: "string"
+        format: "date-time"
+      social-media-links:
+        type: "integer"
+        example: 12
+      social-media-links-diff:
+        type: "integer"
+        example: 4
+      article-links:
+        type: "integer"
+        example: 12
+      article-links-diff:
+        type: "integer"
+        example: 4
+      content-rewiew-tasks:
+        type: "integer"
+        example: 14
+      content-rewiew-tasks-diff:
+        type: "integer"
+        example: 4
+      potential-fake-news-sites:
+        type: "integer"
+        example: 120
+      potential-fake-news-sites-diff:
+        type: "integer"
+        example: 4
+      indexed-sites:
+        type: "integer"
+        example: 129
+      indexed-sites-diff:
+        type: "integer"
+        example: 2
+      indexed-articles-month:
+        type: "integer"
+        example: 17325
+      indexed-articles-month-diff:
+        type: "integer"
+        example: 34
+    example:
+      social-media-links-diff: 4
+      potential-fake-news-sites-diff: 4
+      indexed-articles-month: 17325
+      social-media-links: 12
+      indexed-articles-month-diff: 34
+      indexed-sites-diff: 2
+      potential-fake-news-sites: 120
+      article-links-diff: 4
+      content-rewiew-tasks: 14
+      article-links: 12
+      time: "2000-01-23T04:56:07.000+00:00"
+      content-rewiew-tasks-diff: 4
+      indexed-sites: 129
